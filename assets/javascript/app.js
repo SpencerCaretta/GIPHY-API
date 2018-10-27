@@ -39,7 +39,11 @@ $("button").on("click", function() {
 
                 var animalsImage = $("<img>");
                 //add source, gif, and still image attributes to our image tags + data-animate, data-still, and data-state tags for future reference
-                animalsImage.attr("src", "data-animate = 'results[i].images.fixed_height.url'", "data-still = 'results[i].images.fixed_height_still.url'", "data-state = 'still'");
+                animalsImage.attr("src", results[i].images.fixed_height.url);
+                animalsImage.attr({'data-animate' : results[i].images.fixed_height.url});
+                animalsImage.attr({'data-state' : "still"});
+                animalsImage.attr({'data-still' : results[i].images.fixed_height_still.url});
+
                 
                 // adds text and image tag to gifDiv
                 gifDiv.prepend(p);
@@ -66,3 +70,6 @@ $(".gif").on("click", function() {
     }
 })
 });
+
+//search GIPHY API to add new button
+
