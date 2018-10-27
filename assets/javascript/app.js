@@ -15,3 +15,31 @@ function createButtons() {
 }
 
 createButtons();
+
+$("buttons-here").on("click", function() {
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=g4E3tCjjDQVeGcSI15gFw7acBt0kUX1p&limit=10"
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+        .then(function(response) {
+            var results = response.data;
+            for (i=0; i<results.length; i++) {
+                var gifDiv = $("<div class='item'>");
+
+                var rating = results[i].rating;
+
+                var p = $("<p>").text("Rating: " + rating);
+
+                var topicsImage = $("<img>");
+                topicsImage.attr("src", results[i].images.fixed_height.url);
+
+                gifDiv.prepend(p);
+                gifDiv.prepend(topicsImage);
+
+                $("#gifs-here").prepend(gifDiv);
+                }
+
+        });
+});
